@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EjemplosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Departamento">
+    <Key>
+      <PropertyRef Name="iddepartamento" />
+    </Key>
+    <Property Name="iddepartamento" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="nomdepartamento" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Distrito">
+    <Key>
+      <PropertyRef Name="iddistrito" />
+    </Key>
+    <Property Name="iddistrito" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="nomdistrito" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Provincia">
+    <Key>
+      <PropertyRef Name="idprovincia" />
+    </Key>
+    <Property Name="idprovincia" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="nomprovincia" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Ubigeo">
+    <Key>
+      <PropertyRef Name="idubigeo" />
+    </Key>
+    <Property Name="idubigeo" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="iddepartamento" Type="varchar" MaxLength="2" />
+    <Property Name="idprovincia" Type="varchar" MaxLength="2" />
+    <Property Name="iddistrito" Type="varchar" MaxLength="2" />
+  </EntityType>
+  <EntityContainer Name="EjemplosModelStoreContainer">
+    <EntitySet Name="Departamento" EntityType="Self.Departamento" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Distrito" EntityType="Self.Distrito" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Provincia" EntityType="Self.Provincia" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ubigeo" EntityType="Self.Ubigeo" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,154 @@
+﻿@model IEnumerable<Ejemplo01.Models.Ubigeo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Listado</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script  type="text/javascript">
+       
+        $(document).ready(function () {
+            //Agregando opciones por defecto
+            $('#departamento').append('<option value="00" selected>Elija un departamento</option>');
+            $('#provincia').append('<option value="00" selected>Elija una provincia</option>');
+            $('#distrito').append('<option value="00" selected>Elija un distrito</option>');
+            //1.Uso de $.get
+            $('#departamento').change(function () {
+              
+                var _dpto = $('#departamento').val();//Capturo valor
+                //$.get(url,parametros,callback)
+                $.get("/Ubigeo/ConsultarProvsPorDpto/", { dpto: _dpto }, function (data) {
+                    var _html = '<select id="provincia" name="provincia">';
+                    _html = _html.concat('<option value="00">Elija una provincia</option>');
+                    for (var i = 0; i < data.length; i++) {
+                        _html = _html.concat('<option value="' + data[i].idprovincia + '">' + data[i].nomprovincia + '</option>');
+                    }
+                    _html.concat('</select>')
+                    $('#provincia').html(_html);
+                })
+            })
+
+            //2.Uso de $Ajax
+            $('#provincia').change(function () {
+                var _prov = $('#provincia').val();//Capturo valor
+                $.ajax({
+                    url: '/Ubigeo/ConsultarDstosPorProv/',
+                    data: { prov: _prov },
+                    type: "GET",//Modo GET/POST
+                    dataType: 'json',//Formato de resultado
+                    success: function (data) {
+                        var _html = '<select id="distrito" name="distrito">';
+                        _html = _html.concat('<option value="00">Elija un distrito</option>');
+                        for (var i = 0; i < data.length; i++) {
+                            _html = _html.concat('<option value="' + data[i].iddistrito + '">' + data[i].nomdistrito + '</option>');
+                        }
+                        _html.concat('</select>')
+                        $('#distrito').html(_html);
+                    }
+                })
+            })
+
+            //3.Uso de XMLHttpRequest con POST
+            $('#distrito').change(function () {
+
+                $(this).css("background-color", "white");//Uso de this pointer
+
+                var formData = new FormData();//Objeto para envios POST
+                formData.append('dsto', $('#distrito').val());//Adiciono variable en modo POST
+
+                //Configuracion
+                var xmlhttp = new XMLHttpRequest();
+                var url = '/Ubigeo/ConsultarIdPorDistrito';
+
+                //xmlhttp.timeout = 1000;//Para restringir tiempo de sesion
+                xmlhttp.onreadystatechange = function () {
+                    //Si fue satisfactoria la respuesta
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        console.log("Modo XMLHttpRequest:" + xmlhttp.responseText);
+                        console.log(xmlhttp.timeout);
+                        var data = xmlhttp.responseText;
+                        var jsonResponse = JSON.parse(data);
+                        console.log(jsonResponse);
+                        $('input[name="_distrito"]').val(jsonResponse.iddistrito);
+                    }
+                };
+
+                xmlhttp.open("POST", url, true);//open("Modo",ruta,asyncrono)
+                xmlhttp.send(formData);
+                if ($('#distrito').val() == "00") {
+                    $(this).css("background-color", "white");
+                }
+                else {
+                    $(this).css("background-color", "yellow");
+                }
+
+            })
+        })
+
+        /*
+        $(document).ready(CargarPorDefecto ());
+        
+        function CargarPorDefecto() {
+            //Agregando opciones por defecto
+            $('#departamento').append('<option value="00" selected>Elija un departamento</option>');
+            $('#provincia').append('<option value="00" selected>Elija una provincia</option>');
+            $('#distrito').append('<option value="00" selected>Elija un distrito</option>');
+        }
+        */
+          
+
+
+    </script>
+</head>
+<body>
+
+    <div>Departamentos:@Html.DropDownList("departamento", new SelectList(ViewBag.departamentos, "iddepartamento", "nomdepartamento"))</div>
+    <div>Provincias:@Html.DropDownList("provincia", new SelectList(ViewBag.provincias, "idprovincia", "nomprovincia"))</div>
+    <div>Distritos:@Html.DropDownList("distrito", new SelectList(ViewBag.distritos, "iddistrito", "nomdistrito"))</div>
+    <div>Mi código de distrito es:@Html.TextBox("_distrito")</div> 
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.iddepartamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idprovincia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.iddistrito)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.iddepartamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idprovincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iddistrito)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.idubigeo }) |
+                @Html.ActionLink("Details", "Details", new { id=item.idubigeo }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.idubigeo })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
