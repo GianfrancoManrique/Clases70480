@@ -1,0 +1,141 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#btnValidar1').click(function(){
+
+			var regex=/Mar/i;
+			var val01="";
+
+			val01=$('#txt01').val();
+			if(regex.test(val01)){
+				alert(regex.exec(val01));
+			}
+		})
+		
+		$('#btnValidar2').click(function(){
+
+			var regex=/[0123456789]/;
+			var val02="";
+
+			val02=$('#txt02').val();
+			if(regex.test(val02)){
+				alert(regex.exec(val02));
+			}
+		})
+
+		$('#btnValidar3').click(function(){
+
+			var regex=/\d\d\-\d\d-\d\d\d\d \d\d:\d\d/;
+			var val03=$('#txt03').val();
+			if(regex.test(val03)){
+				alert(regex.exec(val03));
+			}
+		})
+	
+		$('#btnValidar4').click(function(){
+
+			var regex=/[^abc]/;
+			var val04=$('#txt04').val();
+			if(regex.test(val04)){
+				alert(regex.exec(val04));
+			}
+		})
+
+		$('#btnValidar5').click(function(){
+
+			var regex=/\d+/;
+			var val05=$('#txt05').val();
+			if(regex.test(val05)){
+				alert(regex.exec(val05));
+			}
+		})
+
+		$('#btnValidar6').click(function(){
+
+			var regex=/\d*/;
+			var val06=$('#txt06').val();
+			if(regex.test(val06)){
+				alert(regex.exec(val06));
+			}
+		})
+
+		$('#btnValidar7').click(function(){
+
+			var regex=/manrr?ique/;
+			var val07=$('#txt07').val();
+			if(regex.test(val07)){
+				alert(regex.exec(val07));
+			}
+		})
+
+		$('#btnValidar8').click(function(){
+
+			var regex=/\d{1,2}-\d{1,2}-\d{4} \d{1,2}:\d{2}/;
+			var val08=$('#txt08').val();
+			if(regex.test(val08)){
+				alert(regex.exec(val08));
+			}
+		})
+
+		$('#btnValidar9').click(function(){
+
+			var regex=/(mama)+/;
+			var val09=$('#txt09').val();
+			if(regex.test(val09)){
+				alert(regex.exec(val09));
+			}
+		})
+
+		$('#btnValidar10').click(function(){
+
+			var regex=/^mal/;
+			var val10=$('#txt10').val();
+			if(regex.test(val10)){
+				alert(regex.exec(val10));
+			}
+		})
+
+		$('#btnValidar11').click(function(){
+
+			var regex=/on$/;
+			var val11=$('#txt11').val();
+			if(regex.test(val11)){
+				alert(regex.exec(val11));
+			}
+		})
+
+		$('#btnValidar12').click(function(){
+
+			var regex=/^\b$/;
+			var val12=$('#txt12').val();
+			if(regex.test(val12)){
+				alert(regex.exec(val12));
+			}
+		})
+
+		$('#btnValidar13').click(function(){
+
+			var regex=/(perro|gato|pollo)s?/;
+			var val13=$('#txt13').val();
+			if(regex.test(val13)){
+				alert(regex.exec(val13));
+			}
+		})
+	})
+
+</script>
+
+Texto que contenga "Mar": <input type="text" id="txt01"><button id="btnValidar1">Validar</button><br>
+Texto que contenga numeros: <input type="text" id="txt02"><button id="btnValidar2">Validar</button><br>
+Texto que contenga fecha formateada: <input type="text" id="txt03"><button id="btnValidar3">Validar</button><br>
+Texto que no contenga abc: <input type="text" id="txt04"><button id="btnValidar4">Validar</button><br>
+Texto que tenga >=1 numero: <input type="text" id="txt05"><button id="btnValidar5">Validar</button><br>
+Texto que tenga >=0 numero: <input type="text" id="txt06"><button id="btnValidar6">Validar</button><br>
+Texto que tenga caracter opcional: <input type="text" id="txt07"><button id="btnValidar7">Validar</button><br>
+Texto que contenga fecha formateada2: <input type="text" id="txt08"><button id="btnValidar8">Validar</button><br>
+Texto que contenga "mama" mínimo 1 vez: <input type="text" id="txt09"><button id="btnValidar9">Validar</button><br>
+Texto que comience con "mal": <input type="text" id="txt10"><button id="btnValidar10">Validar</button><br>
+Texto que termine con "on": <input type="text" id="txt11"><button id="btnValidar11">Validar</button><br>
+Texto que tenga solo caracteres mayusculas: <input type="text" id="txt12"><button id="btnValidar12">Validar</button><br>
+Texto que tenga contenga solo perro,gato o pollo en plural o singular: <input type="text" id="txt13"><button id="btnValidar13">Validar</button><br>

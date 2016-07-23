@@ -1,0 +1,75 @@
+<div id="map"></div>
+
+<script type="text/javascript">
+		
+
+
+function Geolocalizacion() {
+ 
+  	 if (navigator.geolocation) {
+
+  	 	alert("Geolocalizacion habilitada");
+  	 	navigator.geolocation.getCurrentPosition(exito,fracaso,opciones);
+
+  	 }else{
+
+		alert("Geolocalizacion deshabilitada");
+  	 }
+
+}
+
+function exito(posicion){
+
+	var coordenadas=posicion.coords;
+	var latitud=coordenadas.latitude;
+	var longitud=coordenadas.longitude;
+
+	var _resultado=document.getElementById('resultado');
+	_resultado.innerHTML+= "<p>Latitud:" + latitud + "</p>";
+	_resultado.innerHTML+="<p>Longitud:" + longitud + "</p>";
+
+  /*
+  maptype=terrain
+  maptype=satellite
+  maptype=hybrid
+  */
+	var _img_url="http://maps.googleapis.com/maps/api/staticmap?center="+latitud+","+longitud+
+				 "&zoom=14&size=600x480&scale=2&sensor=false&maptype=hybrid&markers=color:green%7Clabel:S%7C"+latitud+","+longitud;
+
+	_resultado.innerHTML+="<img src='"+_img_url+"'>";			 
+}
+
+function fracaso(error){
+
+	var _resultado=document.getElementById('resultado');
+
+	 switch (error.code) {
+            case error.PERMISSION_DENIED:
+                _resultado.innerHTML += "<p>PERMISSION_DENIED</p>";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                _resultado.innerHTML += "<p>POSITION_UNAVAILABLE</p>";
+                break;
+            case error.TIMEOUT:
+                _resultado.innerHTML += "<p>TIMEOUT/p>";
+                break;
+            case error.UNKANOW_ERROR:
+                _resultado.innerHTML += "<p>UNKANOW_ERROR</p>";
+                break;
+     }
+}
+
+var opciones={
+	enableHighAccuracy: true,
+	timeout: 5000,
+
+}
+
+</script>
+
+<script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDS3rrDvOR4DHTi7xibBAlIeTV7AKqA3nA">
+</script>
+
+<div id="resultado">Ejemplo Geolocalizacion-Google Maps</div><br>
+<button onclick="Geolocalizacion()">Cargar Geo</button>
