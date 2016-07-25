@@ -14,5 +14,9 @@ module.exports = {
 	Expresiones:function(req,res){
 		res.view("02-expresiones");
 	},
+
+	WebWorkers:function(req,res){
+		res.view("03-webworkers");
+	}
 };
 

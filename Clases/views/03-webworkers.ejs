@@ -1,0 +1,48 @@
+<h1>Uso de web workers</h1>
+<p>Introduce un número entero :<input type="text" id="numLimite"></p>
+<button id="btnPrimos">Generar</button><br><br>
+<div id="resultado"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$("#btnPrimos").click(function(){
+
+			if(typeof(Worker)!=="undefined"){
+			
+			alert("Web workers habilitados");
+
+			var worker=new Worker("/js/calculos.js");
+			var numLimite=$("#numLimite").val();
+			worker.postMessage(numLimite);
+
+			worker.onmessage=function(event){
+
+				$("#resultado").html(event.data);
+
+			}
+
+			worker.onerror=function(event){
+				
+				var mensaje="Mensaje de error \n";
+				mensaje=mensaje.concat("Archivo: ",event.filename,"\n",
+									   "Linea: ",event.lineno,"\n",
+									   "Mensaje: ",event.message);
+
+				alert(mensaje);	
+			}
+
+			}else{
+				alert("Web workers NO habilitados");
+			}
+
+		})
+	
+
+
+	})
+
+</script>

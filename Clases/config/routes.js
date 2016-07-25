@@ -42,7 +42,10 @@ module.exports.routes = {
     action:"Expresiones"
   },
 
-
+  '/web_workers':{
+    controller:"Clase",
+    action:"WebWorkers"
+  }
 
   /***************************************************************************
   *                                                                          *
