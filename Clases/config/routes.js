@@ -45,6 +45,11 @@ module.exports.routes = {
   '/web_workers':{
     controller:"Clase",
     action:"WebWorkers"
+  },
+
+  '/web_sockets':{
+    controller:"Clase",
+    action:"WebSockets"
   }
 
   /***************************************************************************

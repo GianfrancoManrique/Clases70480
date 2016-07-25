@@ -17,6 +17,12 @@ module.exports = {
 
 	WebWorkers:function(req,res){
 		res.view("03-webworkers");
+	},
+
+	/*
+	WebSockets:function(req,res){
+		res.view("04-websockets");
 	}
+	*/
 };
 

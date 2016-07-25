@@ -1,6 +1,10 @@
 <h1>Uso de web workers</h1>
 <p>Introduce un número entero :<input type="text" id="numLimite"></p>
-<button id="btnPrimos">Generar</button><br><br>
+<button id="btnPrimosNoWW">Generar sin WW</button><br><br>
+<button id="btnPrimosSiWW">Generar con WW</button><br><br>
+
+<input type="checkbox">Marcar
+
 <div id="resultado"></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -9,7 +13,20 @@
 
 	$(document).ready(function(){
 
-		$("#btnPrimos").click(function(){
+		$("#btnPrimosNoWW").click(function(){
+
+			$("#resultado").html=" ";
+
+			var numLimite=$("#numLimite").val();
+
+			$("#resultado").html("No WW: "+obtenerPrimos(numLimite));
+
+		})
+
+
+		$("#btnPrimosSiWW").click(function(){
+
+			$("#resultado").html=" ";
 
 			if(typeof(Worker)!=="undefined"){
 			
@@ -21,7 +38,7 @@
 
 			worker.onmessage=function(event){
 
-				$("#resultado").html(event.data);
+				$("#resultado").html("Si WW: "+event.data);
 
 			}
 
@@ -40,9 +57,35 @@
 			}
 
 		})
-	
 
 
+		function obtenerPrimos(numLimite){
+
+			var numPrimos="";
+			for (var i = 0;i<= numLimite; i++) {
+				if(esPrimo(i)){
+					numPrimos+=i+" ";
+				}
+			};
+
+			return numPrimos;
+		}
+
+		function esPrimo(num){
+
+			if(num<2){
+				return false;
+			}else{
+				var raiz=Math.sqrt(num);
+				for (i =2; i <= raiz; i++) {
+					if(num%i==0) return false	
+				}
+			};
+
+			return true;
+
+		}
+			
 	})
 
 </script>
