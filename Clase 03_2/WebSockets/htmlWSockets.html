@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        if (window.WebSocket) {
+            //Creando la comunicacion con el servidor en TR
+            var mysocket = new WebSocket("ws://echo.websocket.org/");
+            mysocket.onopen = function (evt) {
+                escribir("websocket abierto...");
+            }
+            //Cuando ws recibe un mensaje
+            mysocket.onmessage = function (evt) {
+                escribir("RECIBIDO: "+evt.data);
+            }
+
+            //Cuando ws se cierra
+            mysocket.onclose = function (evt) {
+                escribir("web socket cerrado...")
+            }
+
+            //Cuando ws genera alguna excepcion
+            mysocket.onerror = function (evt) {
+                escribir("ERROR: "+evt.data)
+            }
+        }
+        else {
+            alert("web socket no soportado..");
+        }
+
+        function escribir(texto) {
+            valor = document.getElementById("caja").value;
+            document.getElementById("caja").value = valor + texto + "\n";
+        }
+        function enviar(texto) {
+            mysocket.send(texto);
+            escribir("ENVIADO: " + texto);
+        }
+        function desconectar() {
+            mysocket.close();
+        }
+    </script>
+</head>
+<body>
+    <textarea id="caja" cols="100" rows="20"></textarea>
+    <br/>
+    <input type="text" id="mensaje" size="105"/>
+    <button onclick="enviar(document.getElementById('mensaje').value);">Enviar</button>
+    <button onclick="desconectar();">Desconectar</button>
+</body>
+</html>

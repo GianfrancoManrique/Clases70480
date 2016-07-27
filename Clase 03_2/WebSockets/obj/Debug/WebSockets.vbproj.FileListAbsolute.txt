@@ -1,0 +1,18 @@
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\bin\WebSockets.dll
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\bin\WebSockets.pdb
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\bin\WebSockets.xml
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\obj\Debug\WebSockets.Resources.resources
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\obj\Debug\WebSockets.vbproj.GenerateResource.Cache
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\obj\Debug\WebSockets.dll
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\obj\Debug\WebSockets.xml
+D:\Ejemplos_GF\20_01_2015\WebSockets\WebSockets\obj\Debug\WebSockets.pdb
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\bin\WebSockets.dll.config
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\bin\WebSockets.dll
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\bin\WebSockets.pdb
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\bin\WebSockets.xml
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\obj\Debug\WebSockets.vbprojResolveAssemblyReference.cache
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\obj\Debug\WebSockets.Resources.resources
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\obj\Debug\WebSockets.vbproj.GenerateResource.Cache
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\obj\Debug\WebSockets.dll
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\obj\Debug\WebSockets.xml
+F:\06 MCSD\00 20480B\DEMOS\Sesion-03\Clases70480\Clase 03_2\WebSockets\obj\Debug\WebSockets.pdb

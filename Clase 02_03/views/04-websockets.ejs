@@ -1,0 +1,79 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		var _webSocket=null;
+
+		if(typeof(WebSocket)!=="undefined"){
+
+			_webSocket=new WebSocket("ws://echo.websocket.org/");
+
+			$("#btnEnviar").on("click",function(){
+
+				var mensaje=$('#txtMensaje').val();
+
+				if(_webSocket.readyState==WebSocket.OPEN){
+					
+					_webSocket.send(mensaje);
+
+				}else{
+
+					var mensajes=$('#txtMensajes').val()+"\n";
+
+					$('#txtMensajes').val(mensajes+"La conexión se encuentra cerrada");
+				}
+			
+
+			})
+
+			$("#btnDesconectar").on("click",function(){
+
+				_webSocket.close();
+
+			})
+	
+			_webSocket.onopen=function(event){
+
+				var mensajes="Abriendo socket ";
+
+				$('#txtMensajes').val(mensajes+"("+event.type+")");
+
+			}
+
+			_webSocket.onmessage=function(event){
+				
+				var mensajes=$('#txtMensajes').val();
+
+				$('#txtMensajes').val(mensajes+"\n"+event.data+"("+event.type+")");
+
+			}
+
+			_webSocket.onclose=function(event){
+				
+				var mensajes=$('#txtMensajes').val()+"\n";
+
+				$('#txtMensajes').val(mensajes+"Cerrando socket");
+
+			}
+
+			_webSocket.onerror=function(event){
+				
+				var mensajes=$('#txtMensajes').val();
+
+				$('#txtMensajes').val(mensajes+"("+event.type+")"+ event.message);
+			}
+
+		}else{
+			alert("No soporta web sockets");
+		}
+
+	})
+
+</script>
+
+<h2>Uso de web sockets</h2>
+<textarea id="txtMensajes" id="" cols="50" rows="10"></textarea><br>
+<input type="text" id="txtMensaje" size="55">
+<button id="btnEnviar">Enviar</button>
+<button id="btnDesconectar">Desconectar</button>

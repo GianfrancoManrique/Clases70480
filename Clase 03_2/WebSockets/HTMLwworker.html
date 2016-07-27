@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script>
+        //Creando el web worker
+        var worker = new Worker('bigLoop.js');
+        //Evento que se dispara cuando se termina de ejecutar el proceso albergado por el ww
+        worker.onmessage = function (event) {
+            alert("Completado " + event.data + "-interacciones");
+        };
+
+        //Evento que se dispara cuando se genere alguna excepcion
+        worker.onerror = function (event) {
+            console.log(event.message, event);
+        };
+        //Funcion para detener la ejecucion del ww
+        function stopWorker() {
+            worker.terminate();
+            alert("worker Terminado");
+        }
+        //Funcion para emitir una alerta
+        //Independiente del proceso ejecutado por el WW
+        function emitirSaludos() {
+            alert("Hello World");
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Emitir Saludo" onclick="emitirSaludos();"/>
+    <input type="button" value="Detener worker" onclick="stopWorker();" />
+</body>
+</html>
